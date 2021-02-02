@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+	<title>Combination and Permutation</title>
+  <link rel="stylesheet" type="text/css" href="Semantic-UI-master/dist/semantic.min.css">
+	<script
+			src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src='https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
+	<script type="text/x-mathjax-config">
+		MathJax.Hub.Config({
+			tex2jax: {inlineMath: [["$","$"],["\\(","\\)"]]}
+		});
+	</script>
+  <script src="combination_permutation.js"></script>
+  <link rel="stylesheet" href="https://kendo.cdn.telerik.com/2018.2.620/styles/kendo.bootstrap-v4.min.css">
+  <script src="https://kendo.cdn.telerik.com/2018.2.620/js/kendo.all.min.js"></script>
+
+  <style>
+  .p1 {
+        font-family: "Times New Roman", Times, serif;
+        font-size: 20px;
+      }
+  .p2 {
+        font-family: "Times New Roman", Times, serif;
+        font-size: 24px;
+      }
+  </style>
+
+</head>
+
+<body>
+  <p class="p2" style="margin-left:20px; margin-bottom:10px;font-size: 30px;"><b>Combination and Permutation</b></p>
+  <img src="A.png" height="150" style="margin-left: 40px;">
+  <img src="B.png" height="150" style="margin-left: 40px;">
+  <img src="C.png" height="150" style="margin-left: 40px;">
+  <img src="D.png" height="150" style="margin-left: 40px;">
+  <ol type="1">
+
+    <b><li class="p1"><p>Anne(A), Betty(B), Charles(C), and Daniel(D) are standing in a row to take a photo. List out all possible arrangements and count the number of different photos that can be taken.</p></li></b>
+
+    <div id="listing" style="display:table; float:left;height:350px; width:50%; margin-top:10px;">
+      <div id="AXXX" style="float:left; width:25%;"></div>
+      <div id="BXXX" style="float:left; width:25%;"></div>
+      <div id="CXXX" style="float:left; width:25%;"></div>
+      <div id="DXXX" style="float:left; width:25%;"></div>
+    </div>
+
+    <div id="showImg" style="float:right; height: 350px; width:50% ; margin-top:10px"></div>
+    <button id="q1Btn" value=0 type="button" class="ui primary button" onclick="question1()">Next</button>
+
+    <b><li class="p1" style="margin-top:50px"><p>How can we count the number of arrangements in a more effective way?</p></li></b>
+
+    <div style="display:table; height:400px;width:500px; margin-top:10px;">
+        <div style="float:left; width:100px; height:150px; margin:10px; padding:10px;">
+          <img src="A.png"height="120">
+        </div>
+
+        <div style="float:left; width:100px; height:150px; margin:10px; padding:10px;">
+          <img src="B.png" height="120" style="margin-left:10px;">
+        </div>
+
+        <div style="float:left; width:100px; height:150px; margin:10px; padding:10px;">
+          <img src="C.png" height="120" style="margin-left:10px;">
+        </div>
+
+        <div style="float:left; width:100px; height:150px; margin:10px; padding:10px;">
+          <img src="D.png" height="120" style="margin-left:10px;">
+        </div>
+
+      <button id="btnA" value=1 style="margin-left:22px" class="ui primary button" onclick="question2('A')">Anne</button>
+      <button id="btnB" style="margin-left:40px" class="ui primary button" onclick="question2('B')">Betty</button>
+      <button id="btnC" style="margin-left:35px" class="ui primary button" onclick="question2('C')">Charles</button>
+      <button id="btnD" style="margin-left:30px" class="ui primary button" onclick="question2('D')">Daniel</button>
+
+      <div id="order1" style="float:left; width:100px; height:150px; margin:10px; margin-top:40px; padding:10px; border: 1px solid black;">
+        <img src="question.png" height="80" style="margin-top:25px;">
+      </div>
+
+      <div id="order2" style="float:left; width:100px; height:150px; margin:10px; margin-top:40px; padding:10px; border: 1px solid black;"></div>
+      <div id="order3" style="float:left; width:100px; height:150px; margin:10px; margin-top:40px; padding:10px; border: 1px solid black;"></div>
+      <div id="order4" style="float:left; width:100px; height:150px; margin:10px; margin-top:40px; padding:10px; border: 1px solid black;"></div>
+
+      <div style="height:200px;width:500px; margin-top:200px;">
+
+        <span id="formula" style="position: relative; left:30px; font-size: 60px;">$4$</span>
+        <p id="result" style="font-size: 60px; display:none">$= 24$</p>
+      </div>
+      </div>
+
+      <b><li class="p1"><p>What is the number of different photos that can be taken if Eric also joins the photo taking? </p></li></b>
+      <div id="q3Listing" style="margin-top: 20px">
+      <img src="A.png" height="100" style="margin-left: 40px;">
+      <img src="B.png" height="100" style="margin-left: 40px;">
+      <img src="C.png" height="100" style="margin-left: 40px;">
+      <img src="D.png" height="100" style="margin-left: 40px;">
+      <img src="E.png" height="100" style="margin-left: 40px;">
+    </div>
+      <div style="position: relative; bottom: 60px; left: 500px;"><input type="range" min="1" max="120" value="1" class="slider" id="myRange" oninput="question3(this.value)"></div>
+      <button id="q3Result" class="ui primary button" onclick="question3Ans()">Answer</button>
+      <p id="q3Answer" style="margin-top:10px; font-size: 30px; display:none; font-family: 'Times New Roman'">Number of different photos$=5\times4\times3\times2\times1=120$</p>
+
+      <div style="height:200px;width:500px; "></div>
+
+
+  </o1>
+
+</body>
+
+</html>
